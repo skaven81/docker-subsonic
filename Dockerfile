@@ -10,7 +10,7 @@ ENV LANG=en_US.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=en_US.UTF-8
 # with --cap-add=NET_ADMIN to allow changing the IP.
 # If you are using Docker 1.10+, leave this blank and
 # use the --ip= parameter to set the container's IP.
-ENV CONTAINER_IP=192.168.1.55/24
+ENV CONTAINER_IP=192.168.1.45/24
 
 VOLUME /music
 VOLUME /playlists
