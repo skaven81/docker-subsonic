@@ -30,6 +30,8 @@ su nobody -s /bin/bash -c "/usr/bin/subsonic \
         --default-music-folder=/music \
         --default-podcast-folder=/podcasts \
         --default-playlist-folder=/playlists"
-sleep 1
-tail -F /var/subsonic/subsonic_sh.log
+while [ ! -f /var/subsonic/subsonic.log ]; do
+    sleep 1
+done
+tail -f /var/subsonic/subsonic.log
 killall java
