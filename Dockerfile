@@ -25,7 +25,7 @@ RUN apt-get update && \
 
 # Make the "nobody" user uid 99, to match RHEL (our container host)
 RUN groupadd -g 99 nobody && \
-    usermod -u 99 -G nobody nobody
+    usermod -u 99 -g 99 -G nobody nobody
 
 WORKDIR /var/subsonic
 ADD [ "http://subsonic.org/download/subsonic-${VERSION}.deb", "subsonic.deb" ]
