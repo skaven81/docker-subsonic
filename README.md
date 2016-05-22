@@ -46,7 +46,7 @@ different port.
 ### With an older Docker, with static IP
 
 ```
-docker run -d --name=mysubsonic --cap-add=NET_ADMIN --publish-all \
+docker run -d --name=mysubsonic --cap-add=NET_ADMIN -p 4040:4040 \
     -v /path/to/subsonic-data:/subsonic \
     -v /path/to/playlists:/playlists \
     -v /path/to/video:/video subsonic
@@ -57,7 +57,7 @@ docker run -d --name=mysubsonic --cap-add=NET_ADMIN --publish-all \
 ### With a newer Docker, with static IP
 
 ```
-docker run -d --name=mysubsonic --ip=192.168.1.55 --publish-all \
+docker run -d --name=mysubsonic --ip=192.168.1.55 -p 4040:4040 \
     -v /path/to/subsonic-data:/subsonic \
     -v /path/to/playlists:/playlists \
     -v /path/to/video:/video subsonic
@@ -68,7 +68,7 @@ docker run -d --name=mysubsonic --ip=192.168.1.55 --publish-all \
 ### Dynamic IP
 
 ```
-docker run -d --name=mysubsonic --ip=192.168.1.55 --publish-all \
+docker run -d --name=mysubsonic --ip=192.168.1.55 -p 4040:4040 \
     -v /path/to/subsonic-data:/subsonic \
     -v /path/to/playlists:/playlists \
     -v /path/to/video:/video subsonic
