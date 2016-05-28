@@ -2,13 +2,6 @@
 
 PATH=/usr/bin:/usr/sbin:/bin:/sbin
 
-if [ -n "${CONTAINER_IP}" ]; then
-    echo "Setting container IP address to ${CONTAINER_IP}"
-    ip addr flush dev eth0
-    ip addr add ${CONTAINER_IP} dev eth0
-    ip route add 0.0.0.0/0 via 192.168.1.1 dev eth0
-fi
-
 # Make sure /var/subsonic has links to all the right data bits
 # it needs in /subsonic (the external volume)
 cd /var/subsonic
@@ -33,5 +26,6 @@ su nobody -s /bin/bash -c "/usr/bin/subsonic \
 while [ ! -f /var/subsonic/subsonic.log ]; do
     sleep 1
 done
+ip addr show dev eth0
 tail -f /var/subsonic/subsonic.log
 killall java

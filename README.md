@@ -1,19 +1,5 @@
 # Docker container for Subsonic
 
-## Static IP Considerations
-
-The Dockerfile is configured to set up a static IP for the container.
-It does this by setting the `CONTAINER_IP` environment variable in
-the Dockerfile, which is then read by the `run_subsonic.sh` script.
-The `run_subsonic.sh` script then re-IP's the container.  This method
-of setting the IP requires that the container be started with the
-`--add-cap=NET_ADMIN` switch, which allows the container to modify
-its network stack.  This is obviously insecure, but is required on
-older Docker versions.
-
-For newer versions of Docker (1.10+), delete or blank-out the
-`CONTAINER_IP` environment variable in the Dockerfile.
-
 ## Building the container
 
 Normal build process:
@@ -43,21 +29,11 @@ different port.
 
 ## Running Subsonic
 
-### With an older Docker, with static IP
-
-```
-docker run -d --name=mysubsonic --cap-add=NET_ADMIN -p 4040:4040 \
-    -v /path/to/subsonic-data:/subsonic \
-    -v /path/to/playlists:/playlists \
-    -v /path/to/video:/video subsonic
-    -v /path/to/MP3s:/music/library1:ro \
-    -v /raid/to/other_mp3:/music/library2:ro
-```
-
 ### With a newer Docker, with static IP
 
 ```
 docker run -d --name=mysubsonic --ip=192.168.1.55 -p 4040:4040 \
+    --hostname=subsonic \
     -v /path/to/subsonic-data:/subsonic \
     -v /path/to/playlists:/playlists \
     -v /path/to/video:/video subsonic
@@ -65,10 +41,11 @@ docker run -d --name=mysubsonic --ip=192.168.1.55 -p 4040:4040 \
     -v /raid/to/other_mp3:/music/library2:ro
 ```
 
-### Dynamic IP
+### Dynamic IP, for older Dockers
 
 ```
-docker run -d --name=mysubsonic --ip=192.168.1.55 -p 4040:4040 \
+docker run -d --name=mysubsonic -p 4040:4040 \
+    --hostname=subsonic \
     -v /path/to/subsonic-data:/subsonic \
     -v /path/to/playlists:/playlists \
     -v /path/to/video:/video subsonic
