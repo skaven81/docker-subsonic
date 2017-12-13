@@ -1,7 +1,7 @@
 FROM java:8
 MAINTAINER Paul Krizak <paul.krizak@gmail.com>
 
-ENV VERSION=6.0
+ENV VERSION=6.1.3
 ENV LANG=en_US.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=en_US.UTF-8
 
 VOLUME /music
@@ -20,7 +20,8 @@ RUN groupadd -g 99 nobody && \
     usermod -u 99 -g 99 -G nobody nobody
 
 WORKDIR /var/subsonic
-ADD [ "http://subsonic.org/download/subsonic-${VERSION}.deb", "subsonic.deb" ]
+
+ADD [ "https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-${VERSION}.deb", "subsonic.deb" ]
 RUN dpkg -i subsonic.deb && rm subsonic.deb && \
     chown nobody.nobody /var/subsonic && \
     rm -f transcode/lame && \
