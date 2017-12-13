@@ -26,6 +26,5 @@ su nobody -s /bin/bash -c "/usr/bin/subsonic \
 while [ ! -f /var/subsonic/subsonic.log ]; do
     sleep 1
 done
-ip addr show dev eth0
-tail -f /var/subsonic/subsonic.log
+tail -F /var/subsonic/subsonic.log
 killall java
