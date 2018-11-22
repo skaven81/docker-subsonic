@@ -16,6 +16,7 @@ ln -s -f /subsonic/subsonic.properties subsonic.properties
 # into /subsonic (the external volume).  The logs
 # and extraneous data will stay within the container,
 # while the DB, thumbs, etc. will go out.
+su nobody -s /bin/bash -c "rm -f /subsonic/db/subsonic.lck"
 su nobody -s /bin/bash -c "/usr/bin/subsonic \
         --home=/var/subsonic \
         --port=4040 \
