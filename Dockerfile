@@ -1,7 +1,7 @@
 FROM java:8
 MAINTAINER Paul Krizak <paul.krizak@gmail.com>
 
-ENV VERSION=6.1.4
+ENV VERSION=6.1.5
 ENV LANG=en_US.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=en_US.UTF-8
 
 VOLUME /music
