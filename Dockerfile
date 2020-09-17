@@ -1,7 +1,7 @@
 FROM java:8
 MAINTAINER Paul Krizak <paul.krizak@gmail.com>
 
-ENV VERSION=6.1.5
+ENV VERSION=6.1.6
 ENV LANG=en_US.UTF-8 LC_ALL=C.UTF-8 LANGUAGE=en_US.UTF-8
 
 VOLUME /music
@@ -10,7 +10,8 @@ VOLUME /podcasts
 VOLUME /subsonic
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && \
+RUN rm -f /etc/apt/sources.list.d/jessie-backports.list && \
+    apt-get update && \
     apt-get -y install libav-tools lame net-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
