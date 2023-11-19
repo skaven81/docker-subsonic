@@ -1,4 +1,4 @@
-FROM java:8
+FROM circleci/openjdk:8-jdk-buster
 MAINTAINER Paul Krizak <paul.krizak@gmail.com>
 
 ENV VERSION=6.1.6
@@ -9,10 +9,10 @@ VOLUME /playlists
 VOLUME /podcasts
 VOLUME /subsonic
 
+USER root
 ENV DEBIAN_FRONTEND=noninteractive
-RUN rm -f /etc/apt/sources.list.d/jessie-backports.list && \
-    apt-get update && \
-    apt-get -y install libav-tools lame net-tools && \
+RUN apt-get update && \
+    apt-get -y install libavcodec-dev ffmpeg lame net-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
